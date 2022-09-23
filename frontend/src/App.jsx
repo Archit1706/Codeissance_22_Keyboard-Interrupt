@@ -18,15 +18,6 @@ export default function App() {
         app: `flex flex-col h-screen w-screen`,
     };
 
-<<<<<<< HEAD
-          <Routes>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/calorie-tracker" element={<CalorieTracker />} />
-              <Route path="/recipe" element={<Recipe />} />
-          </Routes>
-=======
     return (
         <div className={styles.app}>
             {localStorage.getItem("token") ? (
@@ -34,8 +25,6 @@ export default function App() {
                     <Navbar />
                     <Routes>
                         <Route path="/dashboard" element={<Dashboard />} />
->>>>>>> 2caec33872aa44beebd77bb790bc85c19937c871
-
                         <Route path="/signup" element={<Signup />} />
                         <Route
                             path="/calorie-tracker"
