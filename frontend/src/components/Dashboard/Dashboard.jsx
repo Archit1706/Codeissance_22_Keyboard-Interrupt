@@ -1,8 +1,13 @@
 import React from 'react'
 
 const Dashboard = () => {
+
+  const styles = {
+    container: `bg-red-800`,
+    
+  }
   return (
-    <div>Dashboard</div>
+    <div className={styles.container}>Dashboard</div>
   )
 }
 
