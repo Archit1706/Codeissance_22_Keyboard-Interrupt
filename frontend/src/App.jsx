@@ -6,6 +6,7 @@ import Dashboard from './components/Dashboard/Dashboard'
 import Navbar from './components/Navbar/Navbar'
 import Login from './components/Login/Login'
 import Signup from './components/Signup/Signup'
+import CalorieTracker from './components/CalorieTracker/CalorieTracker' 
 // import { style } from '@mui/system'
 import Sidebar from './components/Sidebar/Sidebar'
 
@@ -24,6 +25,7 @@ export default function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/calorie-tracker" element={<CalorieTracker/>} />
           </Routes>
 
           {/* {
