@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const containerVariants = {
     hidden: {
@@ -27,7 +28,11 @@ const Login = () => {
         setUser({ ...user, [name]: value });
     };
 
-    const login = () => {};
+    // const login = () => {};
+    axios.post("http://localhost:5173/login", user).then((res) => {
+        localStorage.setItem("token", res.data.token);
+        window.location.href = "/dashboard";
+    });
 
     return (
         <motion.div
