@@ -21,7 +21,7 @@ const containerVariants = {
 
 const Signup = () => {
     const [user, setUser] = useState({
-        name: "",
+        username: "",
         phone: "",
         email: "",
         password: "",
@@ -37,8 +37,9 @@ const Signup = () => {
 
     const signup = async (e) => {
         e.preventDefault();
-        const { name, email, password, cpassword } = user;
-        if (name && email && password && cpassword && password === cpassword) {
+        console.log(e)
+        const { username, phone, email, password, cpassword, height, weight} = user;
+        if (username && phone && email && password && cpassword && height && weight && password === cpassword) {
             try {
                 const res = await axios.post(
                     "http://localhost:5000/signup",
@@ -46,10 +47,13 @@ const Signup = () => {
                 );
                 console.log(res);
                 setUser({
-                    name: "",
+                    username: "",
                     email: "",
+                    phone: "",
                     password: "",
                     cpassword: "",
+                    height: "",
+                    weight: "",
                 });
             } catch (err) {
                 console.log(err);
@@ -76,8 +80,8 @@ const Signup = () => {
                     <input
                         class="rounded-md border-gray-200 border-2 outline-none text-black text-base py-2 px-3 my-3 mx-0 w-11/12"
                         type="text"
-                        name="name"
-                        value={user.name}
+                        name="username"
+                        value={user.username}
                         placeholder="Name"
                         onChange={handleChange}
                     />

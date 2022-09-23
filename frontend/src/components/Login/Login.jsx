@@ -29,7 +29,7 @@ const Login = () => {
     };
 
     // const login = () => {};
-    axios.post("http://localhost:5173/login", user).then((res) => {
+    axios.post("http://localhost:5000/login", user).then((res) => {
         localStorage.setItem("token", res.data.token);
         window.location.href = "/dashboard";
     });

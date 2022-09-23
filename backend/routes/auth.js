@@ -5,7 +5,7 @@ const config = require("../config");
 const md5=require("md5");
 
 
-router.post("/register", async (req, res) => {
+router.post("/signup", async (req, res) => {
 	const username = req.body.username;
 	const password = req.body.password;
 	const email=req.body.email;
