@@ -1,7 +1,7 @@
 const mongoose=require("mongoose");
 
 const userSchema=new mongoose.Schema({
-    name:{
+    username:{
         type:String,
         required:true,
     },
@@ -12,7 +12,6 @@ const userSchema=new mongoose.Schema({
     userPhone:{
         type:Number,
         required:true,
-        max: 10
     },
     userWeight:{
         type:Number,
@@ -27,6 +26,9 @@ const userSchema=new mongoose.Schema({
     },
     userGoalHeight:{
         type: Number
+    },
+    userGoalCalorie:{
+        type: String,
     },
     userPassword:{
         type: String,
