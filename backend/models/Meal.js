@@ -1,11 +1,11 @@
 const mongoose=require("mongoose");
 
-const lunchSchema=new mongoose.Schema({
-    userEmail:{
-        type:String,
+const mealSchema=new mongoose.Schema({
+    userid:{
+        type:mongoose.ObjectId,
         required:true,
     },
-    day:{
+    date:{
         type:String,
         required:true,
     },
@@ -20,8 +20,13 @@ const lunchSchema=new mongoose.Schema({
     fats:{
         type:Number,
         required:true,
+    },
+    type:{
+        type:String,
+        required:true,
+        default:""
     }
 });
 
 
-module.exports=mongoose.model("Lunch",lunchSchema);
+module.exports=mongoose.model("Meal",mealSchema);
