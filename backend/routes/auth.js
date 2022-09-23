@@ -9,13 +9,13 @@ router.post("/signup", async (req, res) => {
 	const username = req.body.username;
 	const password = req.body.password;
 	const email=req.body.email;
-	const confPassword=req.body.confPassword;
+	const cpassword=req.body.cpassword;
     const phone=req.body.phone;
     const weight=req.body.weight;
     const height=req.body.height;
 	
 
-	if (!username || !password || !email || !phone || !weight || !confPassword || !height)
+	if (!username || !password || !email || !phone || !weight || !cpassword || !height)
 		return res.status(400).send("One or more of the fields are missing.");
 
 	// checking if username exists
@@ -26,7 +26,7 @@ router.post("/signup", async (req, res) => {
 	const emailcheck= await User.find({email:email});
 	if(emailcheck.length >0) return res.status(400).send("Only one account per email address is allowed");
 
-	if(password!=confPassword) return res.status(400).send("Password and Confirm Password do not match");
+	if(password!=cpassword) return res.status(400).send("Password and Confirm Password do not match");
 	const hash=md5(password);
 
 	const newUser = new User({ username, userPassword:hash, userHeight:height,userWeight:weight,userEmail:email,userPhone:phone });
