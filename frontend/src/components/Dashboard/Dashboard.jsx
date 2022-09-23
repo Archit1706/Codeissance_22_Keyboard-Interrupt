@@ -5,13 +5,21 @@ import Sidebar from '../Sidebar/Sidebar';
 const Dashboard = () => {
 
   const styles = {
-    container: `flex flex-row`,
-
+    container: `flex flex-row w-fit`,
+    image: `rounded overflow-hidden w-fit`,
   }
+
   return (
       <div className={styles.container}>
           <Sidebar />
-          <Box
+          <div>
+              <img
+                  className={styles.image}
+                  src="../src/assets/start.jpg"
+                  alt="landing-img"
+              ></img>
+          </div>
+          {/* <Box
               sx={{
                   width: 300,
                   height: 300,
@@ -21,7 +29,7 @@ const Dashboard = () => {
                       opacity: [0.9, 0.8, 0.7],
                   },
               }}
-          />
+          /> */}
       </div>
   );
 }

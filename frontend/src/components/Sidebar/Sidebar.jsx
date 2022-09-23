@@ -80,11 +80,11 @@ const SidebarData = [
 
 const Sidebar = () => {
     const styles = {
-        sidebar: `h-screen w-[200px] bg-[#81ecec]`,
+        sidebar: `h-screen w-[230px] bg-green-500`,
         menu: `ml-8`,
-        menuItem: `text-slate-800 hover:text-lg hover:font-bold click:bg-blue-500`,
+        menuItem: `text-slate-800 hover:text-lg hover:font-bold focus:bg-blue-500`,
         sidebarlist: `h-screen w-screen flex flex-col`,
-        sidebarlistitem: `flex flex-row py-2.5 hover:cursor-pointer`,
+        sidebarlistitem: `flex flex-row py-2.5 hover:cursor-pointer text-slate-800 hover:text-lg`,
         icon: `mr-4`,
     };
     return (
@@ -97,6 +97,7 @@ const Sidebar = () => {
                                 <li
                                     className={styles.sidebarlistitem}
                                     key={index}
+                                    id={(window.location.pathname == item.link) ? "active" : ""}
                                     onClick={() => {
                                         window.location.pathname = item.link;
                                     }}
@@ -108,8 +109,6 @@ const Sidebar = () => {
                         }
                         )
                     }
-                    
-                    
                 </ul>
             </div>
         </div>
