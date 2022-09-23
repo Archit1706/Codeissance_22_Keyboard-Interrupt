@@ -80,7 +80,7 @@ const SidebarData = [
 
 const Sidebar = () => {
     const styles = {
-        sidebar: `h-screen w-[230px] bg-green-500`,
+        sidebar: `h-full  w-[230px] bg-green-500`,
         menu: `ml-8`,
         menuItem: `text-slate-800 hover:text-lg hover:font-bold focus:bg-blue-500`,
         sidebarlist: `h-screen w-screen flex flex-col`,
