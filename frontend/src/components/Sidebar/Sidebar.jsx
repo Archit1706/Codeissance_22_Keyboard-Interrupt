@@ -83,8 +83,8 @@ const Sidebar = () => {
         sidebar: `h-full  w-[230px] bg-green-500`,
         menu: `ml-8`,
         menuItem: `text-slate-800 hover:text-lg hover:font-bold focus:bg-blue-500`,
-        sidebarlist: `h-screen w-screen flex flex-col`,
-        sidebarlistitem: `flex flex-row py-2.5 hover:cursor-pointer text-slate-800 hover:text-lg`,
+        sidebarlist: `h-screen w-screen flex flex-col overflow-x-hidden`,
+        sidebarlistitem: `flex flex-row py-2.5 hover:cursor-pointer text-slate-800 hover:text-lg w-fit`,
         icon: `mr-4`,
     };
     return (

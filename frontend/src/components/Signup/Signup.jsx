@@ -21,10 +21,13 @@ const containerVariants = {
 
 const Signup = () => {
     const [user, setUser] = useState({
-        name: "",
+        username: "",
+        phone: "",
         email: "",
         password: "",
         cpassword: "",
+        weight: "",
+        height: "",
     });
 
     const handleChange = (e) => {
@@ -34,8 +37,9 @@ const Signup = () => {
 
     const signup = async (e) => {
         e.preventDefault();
-        const { name, email, password, cpassword } = user;
-        if (name && email && password && cpassword && password === cpassword) {
+        console.log(e)
+        const { username, phone, email, password, cpassword, height, weight} = user;
+        if (username && phone && email && password && cpassword && height && weight && password === cpassword) {
             try {
                 const res = await axios.post(
                     "http://localhost:5000/signup",
@@ -43,10 +47,13 @@ const Signup = () => {
                 );
                 console.log(res);
                 setUser({
-                    name: "",
+                    username: "",
                     email: "",
+                    phone: "",
                     password: "",
                     cpassword: "",
+                    height: "",
+                    weight: "",
                 });
             } catch (err) {
                 console.log(err);
@@ -66,41 +73,67 @@ const Signup = () => {
         >
             <div
                 className="signup"
-                class="w-96 items-center text-center rounded-md p-8 bg-slate-100 shadow-lg shadow-indigo-500/50"
+                class="w-3/5 items-center text-center rounded-md p-8 bg-slate-100 shadow-lg shadow-indigo-500/50"
             >
                 <h1 class="text-3xl font-bold mb-4">Sign Up</h1>
-                <input
-                    class="rounded-md border-gray-200 border-2 outline-none text-black text-base py-2 px-3 my-3 mx-0 w-11/12"
-                    type="text"
-                    name="name"
-                    value={user.name}
-                    placeholder="Name"
-                    onChange={handleChange}
-                />
-                <input
-                    class="rounded-md border-gray-200 border-2 outline-none text-black text-base py-2 px-3 my-3 mx-0 w-11/12"
-                    type="email"
-                    name="email"
-                    value={user.email}
-                    placeholder="Email Id"
-                    onChange={handleChange}
-                />
-                <input
-                    class="rounded-md border-gray-200 border-2 outline-none text-black text-base py-2 px-3 my-3 mx-0 w-11/12"
-                    type="password"
-                    name="password"
-                    value={user.password}
-                    placeholder="Password"
-                    onChange={handleChange}
-                />
-                <input
-                    class="rounded-md border-gray-200 border-2 outline-none text-black text-base py-2 px-3 my-3 mx-0 w-11/12"
-                    type="password"
-                    name="cpassword"
-                    value={user.cpassword}
-                    placeholder="Confirm Password"
-                    onChange={handleChange}
-                />
+                <div class="grid grid-cols-2 grid-flow-row gap-4">
+                    <input
+                        class="rounded-md border-gray-200 border-2 outline-none text-black text-base py-2 px-3 my-3 mx-0 w-11/12"
+                        type="text"
+                        name="username"
+                        value={user.username}
+                        placeholder="Name"
+                        onChange={handleChange}
+                    />
+                    <input
+                        class="rounded-md border-gray-200 border-2 outline-none text-black text-base py-2 px-3 my-3 mx-0 w-11/12"
+                        type="tel"
+                        name="phone"
+                        value={user.phone}
+                        placeholder="Phone No."
+                        onChange={handleChange}
+                    />
+                    <input
+                        class="rounded-md border-gray-200 border-2 outline-none text-black text-base py-2 px-3 my-3 mx-0 w-11/12"
+                        type="email"
+                        name="email"
+                        value={user.email}
+                        placeholder="Email Id"
+                        onChange={handleChange}
+                    />
+                    <input
+                        class="rounded-md border-gray-200 border-2 outline-none text-black text-base py-2 px-3 my-3 mx-0 w-11/12"
+                        type="password"
+                        name="password"
+                        value={user.password}
+                        placeholder="Password"
+                        onChange={handleChange}
+                    />
+                    <input
+                        class="rounded-md border-gray-200 border-2 outline-none text-black text-base py-2 px-3 my-3 mx-0 w-11/12"
+                        type="password"
+                        name="cpassword"
+                        value={user.cpassword}
+                        placeholder="Confirm Password"
+                        onChange={handleChange}
+                    />
+                    <input
+                        class="rounded-md border-gray-200 border-2 outline-none text-black text-base py-2 px-3 my-3 mx-0 w-11/12"
+                        type="number"
+                        name="weight"
+                        value={user.weight}
+                        placeholder="Current Weight"
+                        onChange={handleChange}
+                    />
+                    <input
+                        class="rounded-md border-gray-200 border-2 outline-none text-black text-base py-2 px-3 my-3 mx-0 w-11/12"
+                        type="number"
+                        name="height"
+                        value={user.height}
+                        placeholder="Current Height"
+                        onChange={handleChange}
+                    />
+                </div>
                 <div
                     className="button"
                     onClick={(e) => {
