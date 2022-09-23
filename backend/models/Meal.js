@@ -24,7 +24,6 @@ const mealSchema=new mongoose.Schema({
     type:{
         type:String,
         required:true,
-        default:""
     }
 });
 
