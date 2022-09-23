@@ -19,7 +19,6 @@ export default function App() {
   return (
       <div className={styles.app}>
           <Navbar />
-          <Sidebar />
 
           <Routes>
               <Route path="/dashboard" element={<Dashboard />} />
