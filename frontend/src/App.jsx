@@ -7,7 +7,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
 import CalorieTracker from "./components/CalorieTracker/CalorieTracker";
-import Home from "./pages/Home";
+// import Home from "./pages/Home";
 import Recipe from './components/Recipe/Recipe'
 // import { style } from '@mui/system'
 import Sidebar from "./components/Sidebar/Sidebar";
@@ -20,7 +20,10 @@ export default function App() {
 
     return (
         <div className={styles.app}>
-            {localStorage.getItem("token") ? (
+            {
+                // localStorage.getItem("token")
+                true
+                    ? (
                 <>
                     <Navbar />
                     <Routes>
