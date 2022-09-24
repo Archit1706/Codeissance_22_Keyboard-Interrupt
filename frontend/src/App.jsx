@@ -7,7 +7,8 @@ import Navbar from "./components/Navbar/Navbar";
 import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
 import CalorieTracker from "./components/CalorieTracker/CalorieTracker";
-import Home from "./pages/Home";
+// import Home from "./pages/Home";
+import Recipe from './components/Recipe/Recipe'
 // import { style } from '@mui/system'
 import Sidebar from "./components/Sidebar/Sidebar";
 
@@ -17,18 +18,25 @@ export default function App() {
         app: `flex flex-col h-screen w-screen`,
     };
     return (
-        <Routes>
-            {isLoggedin ? (
+        <div className={styles.app}>
+            {localStorage.getItem("token") ? (
                 <>
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/calorie-tracker" element={<CalorieTracker />} />
+                    <Navbar />
+                    <Routes>
+                        <Route path="/dashboard" element={<Dashboard />} />
+
+                        <Route path="/signup" element={<Signup />} />
+                        <Route
+                            path="/calorie-tracker"
+                            element={<CalorieTracker />}
+                        />
+                        {/* <Route path="/recipes" element={<Home />} /> */}
+                    </Routes>
                 </>
             ) : (
                 <>
-                    <Route
-                        path="/login"
-                        element={<Login isLoggedin={isLoggedin} />}
-                    />
+                    <Routes>
+                        <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                 </>
             )}
