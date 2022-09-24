@@ -5,8 +5,6 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-// import '@mobiscroll/react/dist/css/mobiscroll.min.css';
-// import { Datepicker, setOptions } from '@mobiscroll/react';
 import "./styles.css";
 import Calendar from "./Calendar";
 import Details from "./Details";

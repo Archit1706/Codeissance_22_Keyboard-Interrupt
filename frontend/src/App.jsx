@@ -7,9 +7,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
 import CalorieTracker from "./components/CalorieTracker/CalorieTracker";
-// import Home from "./pages/Home";
-import Recipe from './components/Recipe/Recipe'
-// import { style } from '@mui/system'
+import Recipe from "./components/Recipe/Recipe";
 import Sidebar from "./components/Sidebar/Sidebar";
 
 const isLoggedin = true;
@@ -24,24 +22,19 @@ export default function App() {
                     <Navbar />
                     <Routes>
                         <Route path="/dashboard" element={<Dashboard />} />
-
                         <Route path="/signup" element={<Signup />} />
-                        <Route
-                            path="/calorie-tracker"
-                            element={<CalorieTracker />}
-                        />
-                        {/* <Route path="/recipes" element={<Home />} /> */}
+                        <Route path="/calorie-tracker" element={<CalorieTracker />} />
+                        <Route path="/recipes" element={<Recipe />} />
                     </Routes>
                 </>
             ) : (
                 <>
                     <Routes>
-                        <Route path="/login" element={<Login />} />
-                    <Route path="/signup" element={<Signup />} />
+                        <Route path="/login" element={<Login isLoggedin={isLoggedin} />} />
+                        <Route path="/signup" element={<Signup />} />
+                    </Routes>
                 </>
             )}
-        </Routes>
+        </div>
     );
 }
-    // localStorage.getItem("token")
-    

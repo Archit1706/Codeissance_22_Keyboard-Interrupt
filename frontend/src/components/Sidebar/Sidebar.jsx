@@ -1,36 +1,4 @@
-// import React from "react";
-// import { Link } from "react-router-dom";
-
-// export const Sidebar = () => {
-
-//     const styles = {
-//         container: `h-screen w-[200px] bg-[#81ecec]`,
-//         menu: `ml-8`,
-//         menuItem: `text-slate-800 hover:text-lg hover:font-bold click:bg-blue-500`,
-//     };
-
-//   return (
-//       <div className={styles.container}>
-//               <div className={styles.menu}>
-//                   <div className={styles.menuItem}>
-//                       <Link to="/dashboard">Dashboard</Link>
-//                   </div>
-//                   <div className={styles.menuItem}>
-//                       <Link to="/calorie-tracker">Colorie Tracker</Link>
-//                   </div>
-//                   <div className={styles.menuItem}>
-//                       <Link to="/weight-tracker">Weight Tracker</Link>
-//                   </div>
-//                   <div className={styles.menuItem}>
-//                       <Link to="/recipe">Recipes</Link>
-//                   </div>
-//               </div>
-//           </div>
-//   );
-// }
-
 import React from "react";
-// import { SidebarData } from "./SidebarData";
 import { Link } from "react-router-dom";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import EmojiFoodBeverageIcon from "@mui/icons-material/EmojiFoodBeverage";
