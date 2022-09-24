@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Time from "../Time/Time";
 import Sidebar from "../Sidebar/Sidebar";
 import Box from "@mui/material/Box";
@@ -8,12 +8,12 @@ import Modal from "@mui/material/Modal";
 import "./styles.css";
 import Calendar from "./Calendar";
 import Details from "./Details";
-import TextField from '@mui/material/TextField';
+import TextField from "@mui/material/TextField";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
+import axios from "axios";
 
 const CalorieTracker = () => {
-
     const [food, setFood] = useState([
         {
             type: "",
@@ -36,9 +36,15 @@ const CalorieTracker = () => {
     function handleSubmit(e) {
         e.preventDefault();
         console.log("Submitted");
-        axios.post("http://localhost:5000/meals", food).then((res) => {
-
-        });
+        axios
+            .post("http://localhost:5000/meals/tasty", food, {
+                headers: {
+                    token: localStorage.token,
+                },
+            })
+            .then((res) => {
+                console.log(res.body);
+            });
     }
 
     const style = {
@@ -81,11 +87,11 @@ const CalorieTracker = () => {
                 </div>
 
                 <div className={styles.meal}>
-                    <Time time="Breakfast" />
+                    <Time type="breakfast" />
 
-                    <Time time="Lunch" />
+                    <Time type="lunch" />
 
-                    <Time time="Dinner" />
+                    <Time type="dinner" />
                 </div>
 
                 <div className={styles.dataBtn}>
