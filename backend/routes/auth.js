@@ -24,7 +24,7 @@ router.post("/signup", async (req, res) => {
 
 	//checking for multiple accounts for a single email
 	const emailcheck= await User.find({email:email});
-	if(emailcheck.length >0) return res.status(400).send("Only one account per email address is allowed");
+	// if(emailcheck.length >0) return res.status(400).send("Only one account per email address is allowed");
 
 	if(password!=cpassword) return res.status(400).send("Password and Confirm Password do not match");
 	const hash=md5(password);
@@ -36,12 +36,12 @@ router.post("/signup", async (req, res) => {
 router.post("/login", async (req, res) => {
 	const { email, password } = req.body;
 
-	if (!email || !password)
-		return res.status(400).send("Missing email or password");
+	// if (!email || !password)
+	// 	return res.status(400).send("Missing email or password");
 
-	// checking if email exists
+	// // checking if email exists
 	const emails = await User.find({ email: email });
-	if (emails.length === 0) return res.status(400).send("Email is incorrect");
+	// if (emails.length === 0) return res.status(400).send("Email is incorrect");
 
 	const user = emails[0];
 

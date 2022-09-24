@@ -60,16 +60,13 @@ const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Navbar = () => {
-
     const user = {
-        name: "Arhit Rathod",
+        name: "Archit Rathod",
         email: "",
-    }
+    };
     const styles = {
         app: `bg-white`,
-
-    }
-
+    };
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);

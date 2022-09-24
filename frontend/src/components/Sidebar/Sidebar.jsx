@@ -78,7 +78,7 @@ const SidebarData = [
     },
 ];
 
-const Sidebar = () => {
+const Sidebar = ({ isLoggedin }) => {
     const styles = {
         sidebar: `h-screen w-[230px] bg-green-500`,
         menu: `ml-8`,
@@ -91,24 +91,30 @@ const Sidebar = () => {
         <div className={styles.sidebar}>
             <div className={styles.menu}>
                 <ul className={styles.sidebarlist}>
-                    {
-                        SidebarData.map((item, index) => {
-                            return (
-                                <li
-                                    className={styles.sidebarlistitem}
-                                    key={index}
-                                    id={(window.location.pathname == item.link) ? "active" : ""}
-                                    onClick={() => {
-                                        window.location.pathname = item.link;
-                                    }}
-                                >
-                                    <div className={styles.icon}>{item.icon}</div>
-                                    <div>{item.title}</div>
-                                </li>
-                            );
-                        }
-                        )
-                    }
+                    {SidebarData.map((item, index) => {
+                        return (
+                            <li
+                                className={styles.sidebarlistitem}
+                                key={index}
+                                id={
+                                    window.location.pathname == item.link
+                                        ? "active"
+                                        : ""
+                                }
+                                onClick={(e) => {
+                                    isLoggedin =
+                                        e.target.innerHTML == "Logout"
+                                            ? false
+                                            : true;
+                                    localStorage.removeItem("token");
+                                    window.location.pathname = item.link;
+                                }}
+                            >
+                                <div className={styles.icon}>{item.icon}</div>
+                                <div>{item.title}</div>
+                            </li>
+                        );
+                    })}
                 </ul>
             </div>
         </div>

@@ -5,6 +5,11 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+// import '@mobiscroll/react/dist/css/mobiscroll.min.css';
+// import { Datepicker, setOptions } from '@mobiscroll/react';
+import "./styles.css";
+import Calendar from "./Calendar";
+import Details from "./Details";
 
 const CalorieTracker = () => {
     const [open, setOpen] = React.useState(false);
@@ -36,19 +41,49 @@ const CalorieTracker = () => {
     const styles = {
         container: `flex flex-row w-fit`,
         meal: `flex flex-row cursor-pointer justify-center items-center h-fit`,
+        subContainer: ``,
+        calendar: ``,
+    };
+
+    const [showDetails, setShowDetails] = useState(false);
+    const [data, setData] = useState(null);
+
+    const showDetailsHandle = (dayStr) => {
+        setData(dayStr);
+        setShowDetails(true);
     };
 
     return (
         <div className={styles.container}>
-            <Sidebar />
-            <div className={styles.meal}>
-                <Time time="Breakfast" />
-                <Time time="Lunch" />
-                <Time time="Dinner" />
+            <Sidebar isLoggedin={true} />
+            <div className={styles.subContainer}>
+                <div className={styles.calendar}>
+                    <div className="App">
+                        <Calendar showDetailsHandle={showDetailsHandle} />
+                        {/* {showDetails && <Details data={data} />} */}
+                    </div>
+                </div>
+
+                <div className={styles.meal}>
+                    <Time onClick={() => {
+                        console.log(e.target);
+                        handleOpen();
+                        }} time="Breakfast" />
+
+                    <Time onClick={() => {
+                        console.log(e.target);
+                        handleOpen();
+                        }} time="Lunch" />
+
+                    <Time onClick={() => {
+                        console.log(e.target);
+                        handleOpen();
+                        }} time="Dinner" />
+                </div>
             </div>
 
             <div>
-                <Button onClick={handleOpen}>Open modal</Button>
+          
                 <Modal
                     open={open}
                     onClose={handleClose}
@@ -64,7 +99,11 @@ const CalorieTracker = () => {
                             Text in a modal
                         </Typography>
                         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                          <input type="text" placeholder="Dish Name" value={name} />
+                            <input
+                                type="text"
+                                placeholder="Dish Name"
+                                value={name}
+                            />
                             Duis mollis, est non commodo luctus, nisi erat
                             porttitor ligula.
                         </Typography>

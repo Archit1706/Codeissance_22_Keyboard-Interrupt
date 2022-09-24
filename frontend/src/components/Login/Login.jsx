@@ -17,7 +17,7 @@ const containerVariants = {
     },
 };
 
-const Login = () => {
+const Login = ({ isLoggedin }) => {
     const [user, setUser] = useState({
         email: "",
         password: "",
@@ -28,12 +28,13 @@ const Login = () => {
         setUser({ ...user, [name]: value });
     };
 
-    // const login = () => {};
-    axios.post("http://localhost:5000/login", user).then((res) => {
-        localStorage.setItem("token", res.data.token);
-        window.location.href = "/dashboard";
-    });
-
+    const login = () => {
+        axios.post("http://localhost:5000/auth/login", user).then((res) => {
+            localStorage.setItem("token", res.data.token);
+            isLoggedin=true;
+            window.location.pathname = "/dashboard";
+        });
+    };
     return (
         <motion.div
             class="flex w-screen h-screen content-center justify-center items-center bg-inherit"

@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
-// import CircularProgressbar from "react-circular-progressbar";
-// import "react-circular-progressbar/dist/styles.css";
+import {CircularProgressbar} from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 import Button from '@mui/material/Box'
 import { Box } from "@mui/system";
 
@@ -17,7 +17,7 @@ const Time = ({ time }) => {
     return (
         <>
         <div className={styles.container}>
-            {/* <CircularProgressbar value={percentage} text={`${percentage}%`} /> */}
+            <CircularProgressbar value={percentage} text={`${percentage}%`} />
             <hr className={styles.horizontal} />
                 <h1 className={styles.head}>{time}</h1>
 

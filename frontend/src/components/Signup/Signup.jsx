@@ -29,10 +29,13 @@ const Signup = () => {
         weight: "",
         height: "",
     });
+    console.log(user);
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setUser({ ...user, [name]: value });
+        console.log(user);
     };
 
     const signup = async (e) => {
@@ -42,7 +45,7 @@ const Signup = () => {
         if (username && phone && email && password && cpassword && height && weight && password === cpassword) {
             try {
                 const res = await axios.post(
-                    "http://localhost:5000/signup",
+                    "http://localhost:5000/auth/signup",
                     user
                 );
                 console.log(res);
@@ -55,6 +58,7 @@ const Signup = () => {
                     height: "",
                     weight: "",
                 });
+                window.location.href = "/login";
             } catch (err) {
                 console.log(err);
             }

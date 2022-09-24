@@ -11,38 +11,29 @@ import Home from "./pages/Home";
 // import { style } from '@mui/system'
 import Sidebar from "./components/Sidebar/Sidebar";
 
-// const isLoggedin = false;
+const isLoggedin = true;
 export default function App() {
     const styles = {
         app: `flex flex-col h-screen w-screen`,
     };
-
     return (
-        <div className={styles.app}>
-            {localStorage.getItem("token") ? (
+        <Routes>
+            {isLoggedin ? (
                 <>
-                    <Navbar />
-                    <Routes>
-                        <Route path="/dashboard" element={<Dashboard />} />
-
-                        <Route path="/signup" element={<Signup />} />
-                        <Route
-                            path="/calorie-tracker"
-                            element={<CalorieTracker />}
-                        />
-                        {/* <Route path="/recipes" element={<Home />} /> */}
-                    </Routes>
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/calorie-tracker" element={<CalorieTracker />} />
                 </>
             ) : (
                 <>
-                    <Routes>
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/signup" element={<Signup />} />
-                    </Routes>
+                    <Route
+                        path="/login"
+                        element={<Login isLoggedin={isLoggedin} />}
+                    />
+                    <Route path="/signup" element={<Signup />} />
                 </>
             )}
-
-            {/* <h1 className="text-3xl font-bold underline">Hello world!</h1> */}
-        </div>
+        </Routes>
     );
 }
+    // localStorage.getItem("token")
+    
