@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Meal = require("../models/Meal");
 const axios=require("axios");
+const User = require("../models/User");
 
 
 router.post("/tasty",async (req, res) => {
@@ -9,21 +10,20 @@ router.post("/tasty",async (req, res) => {
     var date=new Date();
     date=date.toLocaleDateString();
 
-    const names=req.body.names;
-    var len=names.length;
+    const name=req.body.name;
+    const quantity=req.body.quantity;
     var calories=0;
     var proteins=0;
     var fats=0;
-    console.log(len);
     // for(var i=0;i<len;i++)
     // {
         console.log("Inside loop")
-        const quantity=parseInt(names[0].quantity);
+        // const quantity=parseInt(names[0].quantity);
         console.log("after quantity")
 
-        const foodname=names[0].name;
+        // const foodname=name;
         console.log("after name")
-        axios.get('https://api.edamam.com/api/food-database/v2/parser?app_id=f8cd98cc&app_key=eaf494aa7b96b3b7c657d1b62d127369&ingr='+foodname+'&nutrition-type=cooking')
+        axios.get('https://api.edamam.com/api/food-database/v2/parser?app_id=f8cd98cc&app_key=eaf494aa7b96b3b7c657d1b62d127369&ingr='+name+'&nutrition-type=cooking')
         .then(async function (response) {
             console.log("Inside axios")
             // console.log(response);
@@ -55,52 +55,51 @@ router.post("/tasty",async (req, res) => {
             
 });
 
-// router.post("/profile/changepassword",require("../middlewares/authOnly"),async (req,res)=>{
-//     const newpass=req.body.password;
-//     const confPass=req.body.confPassword;
-//     const user=req.auth.user.username;
+router.get("/getmealdetails",async (req,res)=>{
+    const type=req.body.type;
+    var date=new Date();
+    date=date.toLocaleDateString();
+    const userid=req.auth.user._id;
 
-//     if(newpass!=confPass) return res.status(400).send("Password and confirm password do not match");
-//     try{
-//     await User.updateOne({username:user},{password:md5(newpass)});
-//     res.send("Successfully changed password");
+    // return res.json(await Meal.findOne({userid:userid,type:type,date:date},{userid:0,date:0,type:0}));
+    var collection=await Meal.find({userid:userid,type:type,date:date},{userid:0,date:0,type:0});
+    var len=collection.length;
+    var calsum=0;
+    var prosum=0;
+    var fatsum=0;
+    for(var i=0;i<len;i++)
+    {
+        calsum+=collection[i].calories;
+        prosum+=collection[i].proteins;
+        fatsum+=collection[i].fats;
+
+    }
+    res.json({calories:calsum,proteins:prosum,fats:fatsum});
+});
+
+router.post("/addcaloriegoal",async (req,res)=>{
+    const userid=req.auth.user._id;
+    const goal=req.body.goal;
+    return res.json(await User.updateOne({_id:userid},{userGoalCalorie:goal}));
+});
+
+// router.get("/getworkout",async (req,res)=>{
+
+//     const options = {
+//     method: 'GET',
+//     url: 'https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises',
+//     params: {muscle: 'biceps'},
+//     headers: {
+//         'X-RapidAPI-Key': '7a9ed61a2cmsh7bed0000139e732p17c74fjsn25ef231e5774',
+//         'X-RapidAPI-Host': 'exercises-by-api-ninjas.p.rapidapi.com'
 //     }
-//     catch{
-//         res.status(400).send("Error occured");    }
+// };
+
+// axios.request(options).then(function (response) {
+// 	console.log(response.data);
+// }).catch(function (error) {
+// 	console.error(error);
 // });
-
-// router.post("/search",async (req,res)=>{
-//     const search=req.body.search;
-//     var foundPosts=await Post.find({});
-//     var matchPosts=[];
-//     if(foundPosts.length===0){
-//         res.send("No posts found");
-//     }
-//     else{
-//         foundPosts.forEach(post => {
-//             const lowercaseTitle=post.title.toLowerCase();
-//             if(lowercaseTitle.includes(search.toLowerCase())){
-//                 matchPosts.push(post);
-//             }
-//         });
-//     }
-//     if(matchPosts.length===0)
-//     {
-//         res.send("Could not find matching posts to your search");
-//     }
-//     else{
-//         res.json(matchPosts);
-//     }
-// });
-
-// router.post("/deleteblog",require("../middlewares/authOnly"),async (req,res)=>{
-//     const requestedBlogID=req.body.blogID;
-//     try{
-//     res.send(await Post.deleteOne({ _id:requestedBlogID }));
-//     }
-//     catch{
-//         res.status(400).send("Error");
-//     }
 // });
 
 
