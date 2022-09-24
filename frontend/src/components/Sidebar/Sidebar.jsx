@@ -19,21 +19,21 @@ const SidebarData = [
         icon: <EmojiFoodBeverageIcon />,
         link: "/calorie-tracker",
     },
-    {
-        title: "Weight Tracker",
-        icon: <MonitorWeightIcon />,
-        link: "/weight-tracker",
-    },
+    // {
+    //     title: "Weight Tracker",
+    //     icon: <MonitorWeightIcon />,
+    //     link: "/weight-tracker",
+    // },
     {
         title: "Diet Recipes",
         icon: <MenuBookIcon />,
         link: "/recipes",
     },
-    {
-        title: "Fitness Center",
-        icon: <FitnessCenterIcon />,
-        link: "/fitness-center",
-    },
+    // {
+    //     title: "Fitness Center",
+    //     icon: <FitnessCenterIcon />,
+    //     link: "/fitness-center",
+    // },
     {
         title: "Settings",
         icon: <SettingsIcon />,

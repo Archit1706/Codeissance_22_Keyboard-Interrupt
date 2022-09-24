@@ -27,6 +27,10 @@ export default function App() {
                             path="/calorie-tracker"
                             element={<CalorieTracker />}
                         />
+                        <Route
+                            path="/login"
+                            element={<Login isLoggedin={isLoggedin} />}
+                        />
                         <Route path="/recipes" element={<Recipe />} />
                     </Routes>
                 </>

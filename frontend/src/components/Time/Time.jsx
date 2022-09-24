@@ -12,18 +12,24 @@ const Time = ({ type }) => {
         head: `text-3xl text-center`,
     };
 
-    const percentage = 66;
+    const breakfastCal = 230;
+    const lunchCal = 708;
+    const dinnerfastCal = 509;
+    const breakfastPer = 23.0;
+    const lunchPer = 70.8;
+    const dinnerPer = 50.9;
 
     return (
         <>
-        <div className={styles.container}>
-            <CircularProgressbar value={percentage} text={`${percentage} cal`} />
-            <hr className={styles.horizontal} />
+            <div className={styles.container}>
+                <CircularProgressbar
+                    value={breakfastPer}
+                    text={`${breakfastCal} cal`}
+                />
+                <hr className={styles.horizontal} />
                 <h1 className={styles.head}>{type}</h1>
-
             </div>
-            
-        </> 
+        </>
     );
 };
 
