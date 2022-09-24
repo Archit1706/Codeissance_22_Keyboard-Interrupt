@@ -8,21 +8,38 @@ import Modal from "@mui/material/Modal";
 import "./styles.css";
 import Calendar from "./Calendar";
 import Details from "./Details";
+import TextField from '@mui/material/TextField';
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
 
 const CalorieTracker = () => {
+
+    const [food, setFood] = useState([
+        {
+            type: "",
+            name: "",
+            quantity: "",
+        },
+    ]);
+
+    const { type, name, quantity } = food;
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setUser({ ...food, [name]: value });
+    };
+
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const [food, setFood] = useState([
-      {
-        type: "",
-        name: "",
-        quantity: ""
-      }
-    ]); 
+    function handleSubmit(e) {
+        e.preventDefault();
+        console.log("Submitted");
+        axios.post("http://localhost:5000/meals", food).then((res) => {
 
-    const {type, name, quantity} = food;
+        });
+    }
 
     const style = {
         position: "absolute",
@@ -39,8 +56,9 @@ const CalorieTracker = () => {
     const styles = {
         container: `flex flex-row w-fit`,
         meal: `flex flex-row cursor-pointer justify-center items-center h-fit`,
-        subContainer: ``,
-        calendar: ``,
+        subContainer: `w-fit pl-[100px]`,
+        calendar: `mb-[50px]`,
+        dataBtn: `mt-[20px] p-3 pl-8 pr-8 rounded-3xl flex item-center text-center justify-center items-center bg-blue-300 hover:bg-blue-400 m-[]`,
     };
 
     const [showDetails, setShowDetails] = useState(false);
@@ -63,50 +81,86 @@ const CalorieTracker = () => {
                 </div>
 
                 <div className={styles.meal}>
-                    <Time onClick={() => {
-                        console.log(e.target);
-                        handleOpen();
-                        }} time="Breakfast" />
+                    <Time time="Breakfast" />
 
-                    <Time onClick={() => {
-                        console.log(e.target);
-                        handleOpen();
-                        }} time="Lunch" />
+                    <Time time="Lunch" />
 
-                    <Time onClick={() => {
-                        console.log(e.target);
-                        handleOpen();
-                        }} time="Dinner" />
+                    <Time time="Dinner" />
                 </div>
-            </div>
 
-            <div>
-          
-                <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                >
-                    <Box sx={style}>
-                        <Typography
-                            id="modal-modal-title"
-                            variant="h6"
-                            component="h2"
-                        >
-                            Text in a modal
-                        </Typography>
-                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                            <input
-                                type="text"
-                                placeholder="Dish Name"
-                                value={name}
+                <div className={styles.dataBtn}>
+                    <Button type="button" onClick={handleOpen}>
+                        Add Data
+                    </Button>
+                    <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <Box sx={style}>
+                            <TextField
+                                required
+                                id="outlined-required"
+                                label="Meal"
+                                defaultValue="Lunch"
+                                onChange={handleChange}
+                                value={food.type}
                             />
-                            Duis mollis, est non commodo luctus, nisi erat
-                            porttitor ligula.
-                        </Typography>
-                    </Box>
-                </Modal>
+                            <br />
+                            <br />
+                            <br />
+
+                            <TextField
+                                required
+                                id="outlined-required"
+                                label="Food Name"
+                                defaultValue="Roti"
+                                onChange={handleChange}
+                                value={food.name}
+                            />
+                            <br />
+                            <br />
+                            <br />
+                            <TextField
+                                id="outlined-number"
+                                label="Quantity"
+                                type="number"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                onChange={handleChange}
+                                value={food.quantity}
+                            />
+                            <br />
+                            <br />
+                            <br />
+                            <Button variant="contained" onClick={handleSubmit}>
+                                Add
+                            </Button>
+
+                            {/* <Typography
+                                id="modal-modal-title"
+                                variant="h6"
+                                component="h2"
+                            >
+                                Text in a modal
+                            </Typography>
+                            <Typography
+                                id="modal-modal-description"
+                                sx={{ mt: 2 }}
+                            >
+                                <input
+                                    type="text"
+                                    placeholder="Dish Name"
+                                    value={name}
+                                />
+                                Duis mollis, est non commodo luctus, nisi erat
+                                porttitor ligula.
+                            </Typography> */}
+                        </Box>
+                    </Modal>
+                </div>
             </div>
         </div>
     );

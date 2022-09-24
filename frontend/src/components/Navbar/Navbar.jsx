@@ -15,7 +15,8 @@ import AdbIcon from "@mui/icons-material/Adb";
 import SearchIcon from "@mui/icons-material/Search";
 import FoodBankIcon from "@mui/icons-material/FoodBank";
 import TextField from "@mui/material/TextField";
-import { width } from "@mui/system";
+import Badge from "@mui/material/Badge";
+import MailIcon from "@mui/icons-material/Mail";
 
 
 const pages = ["Products", "Pricing", "Blog"];
@@ -27,7 +28,7 @@ const Navbar = () => {
         email: "",
     };
     const styles = {
-        app: `bg-white`,
+        app: `bg-slate-100`,
     };
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -157,14 +158,14 @@ const Navbar = () => {
                         ))} */}
                     </Box>
 
-                    {/* <SearchIcon
+                    <SearchIcon
                         sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }}
                     />
                     <Box
                         component="form"
                         sx={{
                             "& > :not(style)": { m: 1, width: "25ch" },
-                            display: {xs: "flex", md: "flex"},
+                            display: { xs: "flex", md: "flex" },
                         }}
                         noValidate
                         autoComplete="off"
@@ -174,6 +175,11 @@ const Navbar = () => {
                             label="Search"
                             variant="standard"
                         />
+                    </Box>
+                    {/* <Box>
+                        <Badge badgeContent={4} color="primary">
+                            <MailIcon color="action" />
+                        </Badge>
                     </Box> */}
 
                     <Box sx={{ flexGrow: 0 }}>

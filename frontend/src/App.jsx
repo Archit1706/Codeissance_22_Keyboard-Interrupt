@@ -17,20 +17,26 @@ export default function App() {
     };
     return (
         <div className={styles.app}>
-            {localStorage.getItem("token") ? (
+            {isLoggedin ? (
                 <>
                     <Navbar />
                     <Routes>
                         <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/signup" element={<Signup />} />
-                        <Route path="/calorie-tracker" element={<CalorieTracker />} />
+                        <Route
+                            path="/calorie-tracker"
+                            element={<CalorieTracker />}
+                        />
                         <Route path="/recipes" element={<Recipe />} />
                     </Routes>
                 </>
             ) : (
                 <>
                     <Routes>
-                        <Route path="/login" element={<Login isLoggedin={isLoggedin} />} />
+                        <Route
+                            path="/login"
+                            element={<Login isLoggedin={isLoggedin} />}
+                        />
                         <Route path="/signup" element={<Signup />} />
                     </Routes>
                 </>
